@@ -1,1 +1,33 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="360" height="88" viewBox="0 0 360 88" fill="none" role="img"><title>Aletheia</title><rect width="360" height="88" rx="16" fill="#F8F9FB"/><g transform="translate(12 12)"><rect x="2" y="2" width="60" height="60" rx="18" fill="#7654D0"/><path d="M18 45 32 16l14 29" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="m24 35 7 7 16-17" stroke="#BFF5DF" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g><text x="92" y="57" font-family="Arial, sans-serif" font-size="44" font-weight="700" letter-spacing="-2" fill="#282730">aletheia<tspan fill="#8871F6">.</tspan></text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="88" viewBox="0 0 360 88" fill="none" role="img">
+  <title>Aletheia — Liquid Glass Wordmark (Light)</title>
+  <defs>
+    <linearGradient id="wm-rim-l" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#79B8FF"/>
+      <stop offset="35%" stop-color="#B392F0"/>
+      <stop offset="70%" stop-color="#F97583"/>
+      <stop offset="100%" stop-color="#FFAB70"/>
+    </linearGradient>
+    <linearGradient id="wm-glass-l" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#181824"/>
+      <stop offset="100%" stop-color="#0A0A0A"/>
+    </linearGradient>
+    <linearGradient id="wm-check-l" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#79B8FF"/>
+      <stop offset="100%" stop-color="#B392F0"/>
+    </linearGradient>
+  </defs>
+  <!-- Background Card -->
+  <rect width="360" height="88" rx="16" fill="#FFFFFF"/>
+  <rect x="0.75" y="0.75" width="358.5" height="86.5" rx="15.25" stroke="#0A0A0A" stroke-opacity="0.08" stroke-width="1.5"/>
+  <!-- Monogram Tile -->
+  <g transform="translate(14, 12)">
+    <rect x="2" y="2" width="60" height="60" rx="16" fill="url(#wm-glass-l)"/>
+    <rect x="2.75" y="2.75" width="58.5" height="58.5" rx="15.25" stroke="url(#wm-rim-l)" stroke-width="1.5" stroke-opacity="0.85"/>
+    <path d="M18 46 L32 15 L46 46" stroke="#FFFFFF" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M22.5 37 L41.5 37" stroke="#9DB1C5" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+    <path d="M23 35 L31 43 L48 24" stroke="url(#wm-check-l)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <!-- Wordmark Typography -->
+  <text x="94" y="52" font-family="Geist, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="38" font-weight="500" letter-spacing="-1.5" fill="#0A0A0A">aletheia<tspan fill="#B392F0">.</tspan></text>
+  <text x="96" y="70" font-family="JetBrains Mono, ui-monospace, monospace" font-size="10" font-weight="500" letter-spacing="2" fill="#5A6C7E">EVIDENCE LAYER</text>
+</svg>

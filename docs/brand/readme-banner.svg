@@ -1,14 +1,137 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="520" viewBox="0 0 1280 520" fill="none" role="img"><title>Aletheia — less blind trust, more proof</title><defs><radialGradient id="glow"><stop stop-color="#473275"/><stop offset="1" stop-color="#16151E"/></radialGradient><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" stroke="#FFFFFF" stroke-opacity=".035"/></pattern></defs>
-<rect width="1280" height="520" rx="24" fill="#16151E"/><rect x="700" width="580" height="520" rx="24" fill="url(#glow)"/><rect width="1280" height="520" rx="24" fill="url(#grid)"/>
-<g transform="translate(54 40) scale(.75)"><rect x="2" y="2" width="60" height="60" rx="18" fill="#7654D0"/><path d="M18 45 32 16l14 29" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="m24 35 7 7 16-17" stroke="#BFF5DF" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g>
-<g font-family="Arial, sans-serif"><text x="118" y="75" fill="#F8F9FB" font-size="32" font-weight="700" letter-spacing="-1">aletheia<tspan fill="#AD95FF">.</tspan></text>
-<text x="58" y="144" fill="#B5A1E8" font-size="12" letter-spacing="3">THE EVIDENCE LAYER FOR AI CODING</text>
-<text x="54" y="220" fill="#FFFFFF" font-size="60" font-weight="700" letter-spacing="-2">Less blind trust.</text>
-<text x="54" y="292" fill="#BDA8FF" font-size="60" font-weight="700" letter-spacing="-2">More proof.</text>
-<text x="58" y="341" fill="#C0BBCF" font-size="19">Your agents build. Aletheia checks the work.</text>
-<text x="58" y="373" fill="#938CA6" font-size="16">Independent checks. Bounded recovery. Evidence you can inspect.</text>
-<path d="M58 424H716" stroke="#393244"/>
-<text x="58" y="463" fill="#BFF5DF" font-size="12" letter-spacing="2">LOCAL-FIRST</text><text x="228" y="463" fill="#A39AAF" font-size="12" letter-spacing="2">OPEN SOURCE</text><text x="412" y="463" fill="#A39AAF" font-size="12" letter-spacing="2">BUILT FOR YOUR WORKTREE</text></g>
-<circle cx="995" cy="251" r="170" stroke="#514269"/><circle cx="995" cy="251" r="137" stroke="#786394" stroke-dasharray="3 9"/><path d="M814 251h44m274 0h44M995 70v44m0 274v44" stroke="#786394"/>
-<g transform="translate(899 155) scale(3)"><rect x="2" y="2" width="60" height="60" rx="18" fill="#7654D0"/><path d="M18 45 32 16l14 29" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="m24 35 7 7 16-17" stroke="#BFF5DF" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g>
-<rect x="895" y="417" width="200" height="34" rx="17" fill="#20352F" stroke="#3E6555"/><text x="995" y="439" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" letter-spacing="1.5" fill="#BFF5DF">CLAIMS → CHECKS</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="520" viewBox="0 0 1280 520" fill="none" role="img">
+  <title>Aletheia — Less blind trust. More proof.</title>
+  <defs>
+    <radialGradient id="mesh-glow" cx="80%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#B392F0" stop-opacity="0.22"/>
+      <stop offset="45%" stop-color="#79B8FF" stop-opacity="0.10"/>
+      <stop offset="75%" stop-color="#F97583" stop-opacity="0.04"/>
+      <stop offset="100%" stop-color="#0A0A0A" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="left-glow" cx="15%" cy="80%" r="50%">
+      <stop offset="0%" stop-color="#79B8FF" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#0A0A0A" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="banner-rim" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#79B8FF"/>
+      <stop offset="35%" stop-color="#B392F0"/>
+      <stop offset="70%" stop-color="#F97583"/>
+      <stop offset="100%" stop-color="#FFAB70"/>
+    </linearGradient>
+    <linearGradient id="glass-card" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.06"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.01"/>
+    </linearGradient>
+    <pattern id="dot-grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#FFFFFF" fill-opacity="0.08"/>
+    </pattern>
+    <linearGradient id="check-grad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#79B8FF"/>
+      <stop offset="100%" stop-color="#B392F0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Deep Obsidian Canvas -->
+  <rect width="1280" height="520" rx="16" fill="#0A0A0A"/>
+  <rect width="1280" height="520" rx="16" fill="url(#mesh-glow)"/>
+  <rect width="1280" height="520" rx="16" fill="url(#left-glow)"/>
+  <rect width="1280" height="520" rx="16" fill="url(#dot-grid)"/>
+  <rect x="1" y="1" width="1278" height="518" rx="15" stroke="#FFFFFF" stroke-opacity="0.08" stroke-width="1.5"/>
+
+  <!-- Left Header: Brand & Monogram -->
+  <g transform="translate(64, 48)">
+    <!-- Small Liquid Glass Monogram -->
+    <g transform="scale(0.85)">
+      <rect x="2" y="2" width="60" height="60" rx="16" fill="#14141C"/>
+      <rect x="2.75" y="2.75" width="58.5" height="58.5" rx="15.25" stroke="url(#banner-rim)" stroke-width="1.5" stroke-opacity="0.9"/>
+      <path d="M18 46 L32 15 L46 46" stroke="#FFFFFF" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M22.5 37 L41.5 37" stroke="#9DB1C5" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+      <path d="M23 35 L31 43 L48 24" stroke="url(#check-grad)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <!-- Brand Wordmark -->
+    <text x="68" y="38" font-family="Geist, -apple-system, BlinkMacSystemFont, sans-serif" font-size="30" font-weight="500" letter-spacing="-1" fill="#FFFFFF">aletheia<tspan fill="#B392F0">.</tspan></text>
+  </g>
+
+  <!-- Eyebrow Pill -->
+  <g transform="translate(64, 126)">
+    <rect width="268" height="28" rx="14" fill="#FFFFFF" fill-opacity="0.04" stroke="url(#banner-rim)" stroke-opacity="0.4"/>
+    <circle cx="14" cy="14" r="3.5" fill="#79B8FF"/>
+    <text x="26" y="18" font-family="JetBrains Mono, ui-monospace, monospace" font-size="11" font-weight="500" letter-spacing="1.5" fill="#B392F0">EVIDENCE LAYER FOR AGENTS</text>
+  </g>
+
+  <!-- Main Headline -->
+  <g transform="translate(64, 214)">
+    <text x="0" y="0" font-family="Geist, -apple-system, BlinkMacSystemFont, sans-serif" font-size="58" font-weight="500" letter-spacing="-2" fill="#FFFFFF">Less blind trust.</text>
+    <text x="0" y="66" font-family="Geist, -apple-system, BlinkMacSystemFont, sans-serif" font-size="58" font-weight="500" letter-spacing="-2" fill="#B392F0">More proof.</text>
+  </g>
+
+  <!-- Subtitle Prose -->
+  <text x="64" y="332" font-family="Geist, -apple-system, BlinkMacSystemFont, sans-serif" font-size="19" font-weight="400" fill="#9DB1C5">Your agents build. Aletheia checks the work.</text>
+  <text x="64" y="364" font-family="Geist, -apple-system, BlinkMacSystemFont, sans-serif" font-size="15" font-weight="400" fill="#9DB1C5" fill-opacity="0.7">Independent checks. Bounded recovery. Inspectable evidence checkpoints.</text>
+
+  <!-- Bottom Pills -->
+  <g transform="translate(64, 432)">
+    <g transform="translate(0, 0)">
+      <rect width="132" height="34" rx="8" fill="#FFFFFF" fill-opacity="0.04" stroke="#FFFFFF" stroke-opacity="0.08"/>
+      <text x="14" y="22" font-family="JetBrains Mono, monospace" font-size="11" font-weight="500" letter-spacing="1" fill="#79B8FF">LOCAL-FIRST</text>
+    </g>
+    <g transform="translate(144, 0)">
+      <rect width="138" height="34" rx="8" fill="#FFFFFF" fill-opacity="0.04" stroke="#FFFFFF" stroke-opacity="0.08"/>
+      <text x="14" y="22" font-family="JetBrains Mono, monospace" font-size="11" font-weight="500" letter-spacing="1" fill="#B392F0">OPEN SOURCE</text>
+    </g>
+    <g transform="translate(294, 0)">
+      <rect width="154" height="34" rx="8" fill="#FFFFFF" fill-opacity="0.04" stroke="#FFFFFF" stroke-opacity="0.08"/>
+      <text x="14" y="22" font-family="JetBrains Mono, monospace" font-size="11" font-weight="500" letter-spacing="1" fill="#9DB1C5">ZERO-TRACKING</text>
+    </g>
+  </g>
+
+  <!-- Right Visual: Liquid Glass Showcase Carousel Cards -->
+  <g transform="translate(730, 75)">
+    <!-- Back Card 2 (skewed depth) -->
+    <g transform="translate(60, 40) scale(0.92)" opacity="0.45">
+      <rect width="420" height="270" rx="16" fill="#121218" stroke="#FFFFFF" stroke-opacity="0.1"/>
+    </g>
+
+    <!-- Back Card 1 (depth) -->
+    <g transform="translate(30, 20) scale(0.96)" opacity="0.7">
+      <rect width="420" height="270" rx="16" fill="#14141E" stroke="url(#banner-rim)" stroke-opacity="0.3"/>
+    </g>
+
+    <!-- Foreground Liquid Glass Hero Card -->
+    <g transform="translate(0, 0)">
+      <!-- Chromatic Glass Panel -->
+      <rect width="440" height="290" rx="16" fill="#0E0E16" fill-opacity="0.85"/>
+      <rect width="440" height="290" rx="16" fill="url(#glass-card)"/>
+      <rect x="0.75" y="0.75" width="438.5" height="288.5" rx="15.25" stroke="url(#banner-rim)" stroke-width="1.5" stroke-opacity="0.85"/>
+
+      <!-- Card Top Bar: Status & Counter -->
+      <g transform="translate(24, 24)">
+        <rect width="116" height="26" rx="13" fill="#B392F0" fill-opacity="0.12" stroke="#B392F0" stroke-opacity="0.3"/>
+        <circle cx="13" cy="13" r="3.5" fill="#B392F0"/>
+        <text x="24" y="17" font-family="JetBrains Mono, monospace" font-size="11" font-weight="500" fill="#B392F0">VERIFIED ✓</text>
+
+        <text x="360" y="18" font-family="JetBrains Mono, monospace" font-size="12" font-weight="500" fill="#9DB1C5">01 / 08</text>
+      </g>
+
+      <!-- Card Title -->
+      <text x="24" y="92" font-family="Geist, sans-serif" font-size="18" font-weight="500" fill="#FFFFFF">Handle expired session tokens</text>
+      <text x="24" y="116" font-family="JetBrains Mono, monospace" font-size="12" font-weight="400" fill="#9DB1C5">codex · task-1084 · 2 attempts</text>
+
+      <!-- Code & Verification Evidence Window -->
+      <g transform="translate(24, 136)">
+        <rect width="392" height="114" rx="8" fill="#0A0A0E" stroke="#FFFFFF" stroke-opacity="0.08"/>
+        <!-- Terminal dots -->
+        <circle cx="16" cy="16" r="3.5" fill="#F97583" opacity="0.8"/>
+        <circle cx="28" cy="16" r="3.5" fill="#FFAB70" opacity="0.8"/>
+        <circle cx="40" cy="16" r="3.5" fill="#79B8FF" opacity="0.8"/>
+        <text x="60" y="19" font-family="JetBrains Mono, monospace" font-size="10" fill="#9DB1C5">verification · test, typecheck, diff</text>
+
+        <text x="16" y="46" font-family="JetBrains Mono, monospace" font-size="11" fill="#79B8FF">$ pytest -q</text>
+        <text x="16" y="68" font-family="JetBrains Mono, monospace" font-size="11" fill="#FFFFFF">42 passed in 1.28s</text>
+        <text x="16" y="92" font-family="JetBrains Mono, monospace" font-size="11" fill="#B392F0">✓ evidence verified · 0 regressions</text>
+      </g>
+    </g>
+
+    <!-- Liquid Glass Reflection Specular Curve -->
+    <path d="M 12 8 C 120 18, 320 18, 428 8" stroke="#FFFFFF" stroke-opacity="0.25" stroke-width="1.5" stroke-linecap="round"/>
+  </g>
+</svg>

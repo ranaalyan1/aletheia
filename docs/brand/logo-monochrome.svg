@@ -1,1 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none" role="img"><title>Aletheia — monochrome evidence monogram</title><path d="M18 45 32 16l14 29" stroke="#282730" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="m24 35 7 7 16-17" stroke="#282730" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none" role="img">
+  <title>Aletheia — Monochrome Evidence Monogram</title>
+  <rect x="2.75" y="2.75" width="58.5" height="58.5" rx="16" stroke="currentColor" stroke-width="1.5"/>
+  <path d="M18 46 L32 15 L46 46" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M22.5 37 L41.5 37" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+  <path d="M23 35 L31 43 L48 24" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

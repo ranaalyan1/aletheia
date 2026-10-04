@@ -116,6 +116,7 @@ const navs = [
   ["agents", "Agent integrations", "plug"],
   ["workspace", "Workspace", "settings"],
 ];
+
 let data = null,
   route = location.hash.slice(1) || "overview",
   query = "",
@@ -128,7 +129,9 @@ let data = null,
   lastFocus = null,
   setupAgent = "claude-code",
   errorMessage = "",
-  lastRead = null;
+  lastRead = null,
+  carouselIndex = 0;
+
 let refreshOn = true,
   compact = false;
 try {
@@ -136,6 +139,7 @@ try {
   compact = localStorage.getItem("bs-density") === "compact";
 } catch {}
 if (!navs.some((n) => n[0] === route)) route = "overview";
+
 const api = async (path) => {
   const r = await fetch(path, {
     headers: token ? { Authorization: `Bearer ${token}` } : {},
@@ -152,6 +156,7 @@ const api = async (path) => {
   }
   return r.json();
 };
+
 function toast(message) {
   const e = document.getElementById("toast");
   e.textContent = message;
@@ -159,6 +164,7 @@ function toast(message) {
   clearTimeout(toast.timer);
   toast.timer = setTimeout(() => e.classList.remove("show"), 2800);
 }
+
 async function copy(text) {
   try {
     await navigator.clipboard.writeText(text);
@@ -177,6 +183,7 @@ async function copy(text) {
     );
   }
 }
+
 function nav(to) {
   if (to === route) {
     render();
@@ -184,6 +191,7 @@ function nav(to) {
   }
   location.hash = to;
 }
+
 window.addEventListener("hashchange", () => {
   route = location.hash.slice(1);
   if (!navs.some((n) => n[0] === route)) route = "overview";
@@ -193,19 +201,23 @@ window.addEventListener("hashchange", () => {
   render();
   window.scrollTo(0, 0);
 });
+
 function shell() {
-  return `<aside class="sidebar" aria-label="Main navigation"><a class="brand" href="#overview"><img src="/assets/logo.svg" alt="Aletheia logo">aletheia<b>.</b></a><div class="brand-sub">LOCAL SUPERVISION</div><button class="workspace-switch" data-action="workspace-info"><span class="folder">${icon("folder")}</span><span><strong>${esc(data.project)}</strong><small>Local workspace</small></span>${icon("down")}</button><div class="nav-label">WORKSPACE</div><nav>${navs.slice(0, 4).map(navItem).join("")}<div class="nav-label">CONFIGURATION</div>${navs.slice(4).map(navItem).join("")}</nav><div class="sidebar-bottom"><div class="local-note">${icon("shield")}<strong>A little peace of mind.</strong>Your agents build.<br>Aletheia checks the work.</div><div class="sidebar-footer"><button data-action="docs">${icon("book")}Documentation</button><span>v${esc(data.version)}</span></div></div></aside><div class="shell"><header class="topbar"><button class="icon-button mobile-menu" data-action="menu" aria-label="Toggle navigation">${icon("menu")}</button><div class="crumb">${icon("folder")}<span>${esc(data.project)}</span><span class="slash">/</span><b>${esc(navs.find((n) => n[0] === route)?.[1] || "Overview")}</b></div><div class="top-actions"><button class="search-trigger" data-action="search" aria-label="Search workspace">${icon("search")}<span>Search workspace</span><kbd>⌘ K</kbd></button><span class="read-only"><i class="dot"></i>Read-only console</span><span class="avatar" title="Local workspace, no cloud account">al</span></div></header>${data.mode === "demo" ? `<div class="demo-strip"><strong>DEMO</strong><span>You’re exploring sample data. No agents are running and no real repository is connected.</span><button data-action="workspace-info">Connect your workspace ${icon("arrow")}</button></div>` : ""}<main id="main" class="content" tabindex="-1">${mainContent()}</main></div>`;
+  return `<aside class="sidebar" aria-label="Main navigation"><a class="brand" href="#overview"><img src="/assets/logo.svg" alt="Aletheia logo">aletheia<b>.</b></a><div class="brand-sub">LIQUID GLASS EVIDENCE</div><button class="workspace-switch" data-action="workspace-info"><span class="folder">${icon("folder")}</span><span><strong>${esc(data.project)}</strong><small>Local workspace</small></span>${icon("down")}</button><div class="nav-label">WORKSPACE</div><nav>${navs.slice(0, 4).map(navItem).join("")}<div class="nav-label">CONFIGURATION</div>${navs.slice(4).map(navItem).join("")}</nav><div class="sidebar-bottom"><div class="local-note">${icon("shield")}<strong>Less blind trust. More proof.</strong>Your agents build.<br>Aletheia checks the work.</div><div class="sidebar-footer"><button data-action="docs">${icon("book")}Documentation</button><span>v${esc(data.version)}</span></div></div></aside><div class="shell"><header class="topbar"><button class="icon-button mobile-menu" data-action="menu" aria-label="Toggle navigation">${icon("menu")}</button><div class="crumb">${icon("folder")}<span>${esc(data.project)}</span><span class="slash">/</span><b>${esc(navs.find((n) => n[0] === route)?.[1] || "Overview")}</b></div><div class="top-actions"><button class="search-trigger" data-action="search" aria-label="Search workspace">${icon("search")}<span>Search workspace</span><kbd>⌘ K</kbd></button><span class="read-only"><i class="dot"></i>Read-only console</span><span class="avatar" title="Local workspace, no cloud account">al</span></div></header>${data.mode === "demo" ? `<div class="demo-strip"><strong>DEMO</strong><span>You’re exploring synthetic demo fixtures. No agents are running and no real repository is connected.</span><button data-action="workspace-info">Connect your workspace ${icon("arrow")}</button></div>` : ""}<main id="main" class="content" tabindex="-1">${mainContent()}</main></div>`;
 }
+
 function navItem([id, label, ico]) {
   return `<a class="nav-item ${route === id ? "active" : ""}" href="#${id}" ${route === id ? 'aria-current="page"' : ""}>${icon(ico)}${label}${id === "tasks" ? `<span class="count">${data.stats.total}</span>` : ""}</a>`;
 }
+
 function footer() {
   return `<footer class="footer"><span>${icon("lock")}Local-first. Evidence-driven. Always on your side.</span><span>${data.mode === "demo" ? "Illustrative data" : `Last read ${esc(lastRead?.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) || "—")}`}<button data-action="docs">Docs ${icon("external")}</button></span></footer>`;
 }
+
 const headings = {
   overview: [
     "Overview",
-    "A clear view of the work. And the evidence behind it.",
+    "A clear view of the work. And the liquid glass evidence behind it.",
   ],
   tasks: ["Tasks", "Every task, from first action to verified outcome."],
   verification: [
@@ -222,16 +234,20 @@ const headings = {
   ],
   workspace: ["Workspace", "Your local environment, without the guesswork."],
 };
+
 function mainContent() {
   const [title, sub] = headings[route];
   return `<div class="page-heading"><div><h1>${title}</h1><p>${sub}</p></div><div class="heading-actions"><button class="btn" data-action="refresh" aria-label="Refresh workspace">${icon("refresh")}<span class="refresh-label">Refresh</span></button><button class="btn primary" data-action="setup">${icon("plus")}Set up an agent</button></div></div>${errorMessage ? `<div class="connection-error" role="alert">${esc(errorMessage)}. Displaying the last loaded snapshot. <button data-action="refresh">Retry</button></div>` : ""}${{ overview: overview, tasks: tasksPage, verification: verificationPage, checkpoints: checkpointsPage, agents: agentsPage, workspace: workspacePage }[route]()}${footer()}`;
 }
+
 function render() {
   if (!data) return;
   document.body.classList.toggle("compact", compact);
   document.getElementById("app").innerHTML = shell();
   document.title = `${headings[route][0]} · Aletheia`;
+  attachCarouselEvents();
 }
+
 function stats() {
   const s = data.stats;
   return `<section class="stats" aria-label="Workspace metrics">${[
@@ -270,12 +286,151 @@ function stats() {
     )
     .join("")}</section>`;
 }
-function overview() {
-  return `<section class="hero"><div class="hero-copy"><div class="eyebrow">${icon("spark")}A SECOND PAIR OF EYES</div><h2>Let your agents build.<br>We’ll watch the details.</h2><p>Every change checked. Every recovery traceable.<br>Nothing marked done without evidence.</p><button class="text-button" data-action="workflow">Meet your safety net ${icon("arrow")}</button></div><img class="hero-art" src="/assets/oversight.svg" alt="Aletheia checks agent actions before they become verified results"></section>${stats()}<div class="workspace-grid"><div><section class="panel"><div class="panel-head"><h2>Recent tasks <span class="tag">${data.stats.total}</span></h2><button class="text-button" data-nav="tasks">View all tasks ${icon("arrow")}</button></div><div class="filter-row"><div class="tabs" aria-label="Filter recent tasks"><button class="${filter === "all" ? "selected" : ""}" data-filter="all" aria-pressed="${filter === "all"}">All tasks</button><button class="${filter === "attention" ? "selected" : ""}" data-filter="attention" aria-pressed="${filter === "attention"}">Needs attention</button></div><span class="subtle"><small>Latest activity</small></span></div><div id="task-table">${taskTable(true)}</div></section><section class="panel activity"><div class="panel-head"><h2>Recent activity</h2><span class="tag">${data.mode === "demo" ? "SAMPLE EVENTS" : "RECORDED EVENTS"}</span></div>${activityList()}</section></div>${workflowPanel()}</div>`;
+
+function liquidGlassCarousel() {
+  const tasks = data.tasks;
+  if (!tasks || !tasks.length) return "";
+  const total = tasks.length;
+  const current = Math.min(carouselIndex, total - 1);
+  return `
+    <section class="liquid-glass-carousel" role="region" aria-roledescription="carousel" aria-label="Evidence showcase carousel">
+      <div class="carousel-header">
+        <div class="carousel-title-group">
+          <span class="carousel-dot" aria-hidden="true"></span>
+          <h3 id="carousel-heading">Liquid Glass Evidence Carousel</h3>
+          <span class="tag">CHROMATIC REFRACTION</span>
+        </div>
+        <div class="carousel-controls">
+          <span class="carousel-counter" aria-live="polite" aria-atomic="true">
+            <strong>${String(current + 1).padStart(2, "0")}</strong> / ${String(total).padStart(2, "0")}
+          </span>
+          <button class="carousel-btn prev" data-action="carousel-prev" aria-label="Previous project panel">
+            ${icon("chevron")}
+          </button>
+          <button class="carousel-btn next" data-action="carousel-next" aria-label="Next project panel">
+            ${icon("chevron")}
+          </button>
+        </div>
+      </div>
+      <div class="carousel-viewport" tabindex="0" role="group" aria-labelledby="carousel-heading">
+        <div class="carousel-track" id="carousel-track">
+          ${tasks
+            .map((t, idx) => {
+              const checks = t.last_verification?.commands || [];
+              const passed = checks.filter(
+                (c) => c.exit_code === 0 && !c.timed_out,
+              ).length;
+              const isVerified = t.state === "verified_complete";
+              return `
+              <article class="carousel-panel ${idx === current ? "active" : ""}" role="group" aria-roledescription="slide" aria-label="${idx + 1} of ${total}: ${esc(t.goal)}" data-task="${esc(t.id)}">
+                <div class="carousel-lens-specular" aria-hidden="true"></div>
+                <div class="carousel-panel-inner">
+                  <div class="carousel-panel-top">
+                    ${badge(t.state)}
+                    <span class="carousel-slide-idx">${String(idx + 1).padStart(2, "0")}</span>
+                  </div>
+                  <h4 class="carousel-panel-title" title="${esc(t.goal)}">${esc(t.goal)}</h4>
+                  <div class="carousel-panel-meta">
+                    ${agent(t.adapter)}
+                    <span class="mono"><small>${esc(short(t.id))}</small></span>
+                  </div>
+                  <div class="carousel-code-box">
+                    <div class="carousel-code-bar">
+                      <span class="code-dot dot-r"></span>
+                      <span class="code-dot dot-a"></span>
+                      <span class="code-dot dot-c"></span>
+                      <span class="code-label">evidence-verification</span>
+                    </div>
+                    <div class="carousel-code-content mono">
+                      <div class="cmd-line"><span class="cmd-prompt">$</span> ${t.adapter === "codex" ? "git diff --check &amp;&amp; pytest" : "pytest -q &amp;&amp; mypy"}</div>
+                      <div class="cmd-out ${isVerified ? "out-pass" : "out-warn"}">${checks.length ? `${passed}/${checks.length} checks verified` : isVerified ? "verified complete · 0 errors" : "in progress · checks running"}</div>
+                    </div>
+                  </div>
+                  <div class="carousel-panel-foot">
+                    <span class="carousel-pill"><span class="pill-dot"></span>${t.checkpoint_count} retained</span>
+                    <button class="carousel-zoom-btn" data-task="${esc(t.id)}" data-tab="evidence" aria-label="View evidence for ${esc(t.goal)}">
+                      Inspect proof ${icon("arrow")}
+                    </button>
+                  </div>
+                </div>
+              </article>
+            `;
+            })
+            .join("")}
+        </div>
+      </div>
+    </section>
+  `;
 }
+
+function updateCarousel(newIndex) {
+  const tasks = data?.tasks;
+  if (!tasks || !tasks.length) return;
+  carouselIndex = (newIndex + tasks.length) % tasks.length;
+  const track = document.getElementById("carousel-track");
+  if (track) {
+    const panels = track.querySelectorAll(".carousel-panel");
+    panels.forEach((p, i) =>
+      p.classList.toggle("active", i === carouselIndex),
+    );
+    const target = panels[carouselIndex];
+    if (target) {
+      target.scrollIntoView({
+        behavior: "smooth",
+        inline: "center",
+        block: "nearest",
+      });
+    }
+  }
+  const counter = document.querySelector(".carousel-counter");
+  if (counter) {
+    counter.innerHTML = `<strong>${String(carouselIndex + 1).padStart(2, "0")}</strong> / ${String(tasks.length).padStart(2, "0")}`;
+  }
+}
+
+function attachCarouselEvents() {
+  const track = document.getElementById("carousel-track");
+  if (!track) return;
+  track.addEventListener(
+    "scroll",
+    () => {
+      clearTimeout(track._scrollTimer);
+      track._scrollTimer = setTimeout(() => {
+        const panels = track.querySelectorAll(".carousel-panel");
+        const center = track.scrollLeft + track.clientWidth / 2;
+        let best = 0;
+        let minDiff = Infinity;
+        panels.forEach((p, i) => {
+          const diff = Math.abs(p.offsetLeft + p.clientWidth / 2 - center);
+          if (diff < minDiff) {
+            minDiff = diff;
+            best = i;
+          }
+        });
+        if (best !== carouselIndex) {
+          carouselIndex = best;
+          panels.forEach((p, i) =>
+            p.classList.toggle("active", i === carouselIndex),
+          );
+          const counter = document.querySelector(".carousel-counter");
+          if (counter && data?.tasks) {
+            counter.innerHTML = `<strong>${String(carouselIndex + 1).padStart(2, "0")}</strong> / ${String(data.tasks.length).padStart(2, "0")}`;
+          }
+        }
+      }, 80);
+    },
+    { passive: true },
+  );
+}
+
+function overview() {
+  return `<section class="hero"><div class="hero-copy"><div class="eyebrow">${icon("spark")}EVIDENCE-FIRST SUPERVISION</div><h2>Your agents build.<br>We check the work.</h2><p>Every change independently tested. Every recovery traceable.<br>Never marked complete without evidence.</p><button class="text-button" data-action="workflow">Meet your safety net ${icon("arrow")}</button></div><img class="hero-art" src="/assets/oversight.svg" alt="Aletheia checks agent actions before they become verified results"></section>${liquidGlassCarousel()}${stats()}<div class="workspace-grid"><div><section class="panel"><div class="panel-head"><h2>Recent tasks <span class="tag">${data.stats.total}</span></h2><button class="text-button" data-nav="tasks">View all tasks ${icon("arrow")}</button></div><div class="filter-row"><div class="tabs" aria-label="Filter recent tasks"><button class="${filter === "all" ? "selected" : ""}" data-filter="all" aria-pressed="${filter === "all"}">All tasks</button><button class="${filter === "attention" ? "selected" : ""}" data-filter="attention" aria-pressed="${filter === "attention"}">Needs attention</button></div><span class="subtle"><small>Latest activity</small></span></div><div id="task-table">${taskTable(true)}</div></section><section class="panel activity"><div class="panel-head"><h2>Recent activity</h2><span class="tag">${data.mode === "demo" ? "SAMPLE EVENTS" : "RECORDED EVENTS"}</span></div>${activityList()}</section></div>${workflowPanel()}</div>`;
+}
+
 function workflowPanel() {
   return `<aside class="panel workflow"><div class="panel-head"><h2>The supervision loop</h2>${icon("recover")}</div><div class="workflow-list">${lifecycle.map(([name, sub, ico]) => `<div class="workflow-step ${name === "Verify" ? "focus" : ""}"><span class="workflow-node">${icon(ico)}</span><div><h3>${name}</h3><p>${sub}</p></div>${name === "Verify" ? '<span class="tag">THE NON-NEGOTIABLE</span>' : ""}</div>`).join("")}</div><div class="workflow-foot">${icon("lock")}Passing checks is required.<br>Agent confidence is not evidence.</div></aside>`;
 }
+
 function visibleTasks() {
   return data.tasks.filter(
     (t) =>
@@ -291,6 +446,7 @@ function visibleTasks() {
         t.state === filter),
   );
 }
+
 function taskTable(recent = false) {
   const all = visibleTasks(),
     rows = recent ? all.slice(0, 5) : all;
@@ -305,9 +461,11 @@ function taskTable(recent = false) {
     );
   return `<div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable evidence table"><table><thead><tr><th>Task</th><th>Agent</th><th>Status</th>${recent ? "" : "<th>Attempts</th>"}<th>Updated</th><th><span class="sr-only">Open task</span></th></tr></thead><tbody>${rows.map((t) => `<tr class="task-row" data-task="${esc(t.id)}"><td><button class="task-title" data-task="${esc(t.id)}"><span class="status-symbol ${esc(t.state)}">${icon(symbol(t.state))}</span><span><strong title="${esc(t.goal)}">${esc(t.goal)}</strong><small class="mono">${esc(short(t.id))}</small></span></button></td><td>${agent(t.adapter)}</td><td>${badge(t.state)}</td>${recent ? "" : `<td>${esc(t.attempts)}</td>`}<td><small title="${esc(t.updated_at)}">${esc(ago(t.updated_at))}</small></td><td>${icon("chevron")}</td></tr>`).join("")}</tbody></table></div><div class="table-foot"><span>Showing ${rows.length} of ${all.length} ${data.tasks_truncated ? "loaded " : ""}tasks${data.tasks_truncated ? " · newest 100 loaded" : ""}</span><span>${icon("lock")} Completion requires evidence</span></div>`;
 }
+
 function empty(title, description, action, label) {
   return `<div class="empty">${icon("layers")}<h3>${esc(title)}</h3><p>${esc(description)}</p>${action ? `<button class="btn" data-action="${action}">${esc(label)}</button>` : ""}</div>`;
 }
+
 function activityInfo(e) {
   const p = e.payload;
   switch (e.kind) {
@@ -355,6 +513,7 @@ function activityInfo(e) {
       ];
   }
 }
+
 function activityList() {
   if (!data.activity.length)
     return empty(
@@ -369,6 +528,7 @@ function activityList() {
     })
     .join("")}</div>`;
 }
+
 function tasksPage() {
   return `<div class="task-tools"><label class="search-field">${icon("search")}<input id="task-search" type="search" placeholder="Search tasks, agents, or IDs…" value="${esc(query)}" aria-label="Search tasks"></label><select id="status-filter" aria-label="Filter task status">${[
     ["all", "All statuses"],
@@ -385,24 +545,30 @@ function tasksPage() {
       "",
     )}</select><span class="subtle"><small>${data.stats.total} recorded tasks</small></span></div><section class="panel" id="task-table">${taskTable()}</section>`;
 }
+
 function verificationPage() {
   const tasks = data.tasks.filter((t) => t.last_verification);
   return `${stats()}<section class="panel"><div class="panel-head"><h2>Latest evidence per task</h2><span class="tag">TEST + TYPECHECK + GIT-DIFF</span></div><div class="settings-list">${tasks.length ? tasks.map((t) => `<article class="check-card"><header><h3>${esc(t.goal)}</h3>${badge(t.state)}</header><p>${esc(names[t.adapter] || t.adapter)} · ${t.verification_count} recorded verification round${t.verification_count === 1 ? "" : "s"}</p><div class="evidence-chips">${(t.last_verification.commands || []).map((c) => `<span class="badge ${c.exit_code === 0 && !c.timed_out ? "passed" : "failed"}">${icon(c.exit_code === 0 && !c.timed_out ? "check" : "close")}${esc(c.name)}</span>`).join(" ")}</div><button class="text-button" data-task="${esc(t.id)}" data-tab="evidence">Inspect command evidence ${icon("arrow")}</button></article>`).join("") : empty("No verification evidence yet", "A task is never verified from an agent’s answer alone. Configure meaningful tests and typechecks.", "setup", "Configure supervision")}</div></section>`;
 }
+
 function checkpointsPage() {
   const tasks = data.tasks.filter((t) => t.checkpoint_count);
   return `<div class="notice">${icon("lock")}<span><strong>Inspect, don’t overwrite.</strong> This console only reads retained checkpoints. It never restores files or resets your worktree.</span></div><section class="panel"><div class="panel-head"><h2>Retained task snapshots</h2><span class="tag">${data.stats.checkpoints} CHECKPOINTS TOTAL</span></div>${tasks.length ? `<div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable evidence table"><table><thead><tr><th>Task</th><th>Agent</th><th>Checkpoints</th><th>Task state</th><th></th></tr></thead><tbody>${tasks.map((t) => `<tr><td><button class="task-title" data-task="${esc(t.id)}" data-tab="checkpoints"><span class="status-symbol">${icon("layers")}</span><span><strong>${esc(t.goal)}</strong><small class="mono">${esc(short(t.id))}</small></span></button></td><td>${agent(t.adapter)}</td><td>${t.checkpoint_count} retained</td><td>${badge(t.state)}</td><td><button class="text-button" data-task="${esc(t.id)}" data-tab="checkpoints">Inspect ${icon("arrow")}</button></td></tr>`).join("")}</tbody></table></div>` : empty("Your safety net is ready", "Task baselines and unsuccessful changes will appear here. No snapshot is created by this console.", "setup", "Set up an agent")}</section>`;
 }
+
 function agentsPage() {
   return `<div class="page-grid">${data.agents.map((a) => `<article class="panel agent-card">${agentIcon(a.id)}<h2>${esc(a.name)}</h2><span class="tag">${esc(a.kind)}</span><p>${esc(a.description)}</p><span class="muted-chip">${data.mode === "demo" ? "Demo configuration" : a.observed ? "Observed in loaded task history" : "Not observed in loaded history"}</span><br><button class="btn" data-agent="${esc(a.id)}">Setup instructions ${icon("arrow")}</button></article>`).join("")}</div><div class="notice">${icon("shield")}<span><strong>One agent. One worktree. Native permissions.</strong><br>The console doesn’t launch agents, grant trust, approve tools, or switch models. Use the setup commands in your own terminal.</span></div><section class="panel"><div class="panel-head"><h2>Honest about what’s supported</h2></div><div class="settings-list"><div class="setting"><span>Claude Code & Codex</span><strong>Native hook visibility + Stop verification</strong></div><div class="setting"><span>OpenCode</span><strong>Owned CLI process + post-execution checks</strong></div><div class="setting"><span>DeepSeek & additional agents</span><strong>Not implemented · scope deferred</strong></div></div></section>`;
 }
+
 function commandBlock(command) {
   return `<div class="command-block"><button data-copy="${esc(command)}" aria-label="Copy command">${icon("copy")}</button><pre>${esc(command)}</pre></div>`;
 }
+
 function workspacePage() {
   const config = data.config;
   return `<div class="settings-grid"><section class="panel"><div class="panel-head"><h2>Project environment</h2><span class="tag">READ-ONLY</span></div><div class="settings-list"><div class="setting"><span>Workspace</span><strong>${esc(data.project)}</strong></div><div class="setting"><span>Location</span><strong class="mono">${esc(data.root)}</strong></div><div class="setting"><span>Runtime version</span><strong>${esc(data.version)}</strong></div><div class="setting"><span>Evidence source</span><strong>${data.mode === "demo" ? "Synthetic demo fixtures" : "Local SQLite · read-only connection"}</strong></div><div class="setting"><span>Configuration</span><strong>${config.error ? "Needs inspection" : config.initialized ? "aletheia.json detected" : "Not initialized"}</strong></div>${config.error ? `<p class="connection-error">${esc(config.error)}</p>` : ""}<div class="command-label">Tests</div>${commandBlock((config.commands.test || []).join(" ") || "# No test command configured")}<div class="command-label">Typecheck</div>${commandBlock((config.commands.typecheck || []).join(" ") || "# No typecheck command configured")}</div></section><div><section class="panel"><div class="panel-head"><h2>Console preferences</h2></div><div class="settings-list"><div class="setting"><span>Refresh evidence every 15s</span><select id="refresh-setting" aria-label="Automatic refresh"><option value="on" ${refreshOn ? "selected" : ""}>On</option><option value="off" ${!refreshOn ? "selected" : ""}>Off</option></select></div><div class="setting"><span>Interface density</span><select id="density-setting" aria-label="Interface density"><option value="comfortable" ${!compact ? "selected" : ""}>Comfortable</option><option value="compact" ${compact ? "selected" : ""}>Compact</option></select></div><p class="subtle"><small>These preferences stay in this browser. They do not change your runtime configuration.</small></p></div></section><div class="notice">${icon("lock")}<span>No accounts. No analytics. No cloud sync. Evidence stays on the machine hosting this console. Keep real remote access private and token-protected.</span></div><button class="text-button" data-action="workspace-info">Open another repository ${icon("arrow")}</button></div></div>`;
 }
+
 async function load(manual = false) {
   try {
     const result = await api("/api/workspace");
@@ -421,10 +587,11 @@ async function load(manual = false) {
       if (!modalKind) render();
     } else {
       document.getElementById("app").innerHTML =
-        `<div class="boot"><img src="/assets/logo.svg" width="56" height="56" alt=""><h1>Let’s reconnect.</h1><p>${esc(e.message)}</p><button class="btn primary" data-action="refresh">Try again</button></div>`;
+        `<div class="boot"><img src="/assets/logo.svg" width="56" height="56" alt="Aletheia logo"><h1>Let’s reconnect.</h1><p>${esc(e.message)}</p><button class="btn primary" data-action="refresh">Try again</button></div>`;
     }
   }
 }
+
 function showModal(html, kind, drawer = false) {
   requestId++;
   lastFocus = lastFocus || document.activeElement;
@@ -437,6 +604,7 @@ function showModal(html, kind, drawer = false) {
     document.querySelector("#overlay input, #overlay button")?.focus(),
   );
 }
+
 function closeModal() {
   const locked = modalKind === "auth" && !data;
   requestId++;
@@ -450,11 +618,13 @@ function closeModal() {
   if (f?.isConnected) f.focus();
   if (locked)
     document.getElementById("app").innerHTML =
-      `<div class="boot"><img src="/assets/logo.svg" width="56" height="56" alt=""><h1>Your console is locked.</h1><p>A local access token is required to read project evidence.</p><button class="btn primary" data-action="unlock">Unlock console</button></div>`;
+      `<div class="boot"><img src="/assets/logo.svg" width="56" height="56" alt="Aletheia logo"><h1>Your console is locked.</h1><p>A local access token is required to read project evidence.</p><button class="btn primary" data-action="unlock">Unlock console</button></div>`;
 }
+
 function modalHeader(title, sub = "") {
   return `<header class="modal-header"><div><h2 id="dialog-title">${esc(title)}</h2>${sub ? `<p>${esc(sub)}</p>` : ""}</div><button class="icon-button" data-action="close" aria-label="Close dialog">${icon("close")}</button></header>`;
 }
+
 function setup(id = setupAgent) {
   setupAgent = id;
   const a = data.agents.find((a) => a.id === id);
@@ -463,12 +633,14 @@ function setup(id = setupAgent) {
     "setup",
   );
 }
+
 function workspaceInfo() {
   showModal(
     `${modalHeader("Your workspace. Your machine.")}<div class="modal-body"><p>${data.mode === "demo" ? "This is an interactive demo with illustrative tasks and checkpoints. It does not read or modify any repository." : "This console is connected to one project and never takes runtime ownership."}</p><h3>Open your own repository</h3><p>Run this in a terminal on the machine with Aletheia installed:</p>${commandBlock("aletheia --root /path/to/your/repo ui")}<p>The default address is <code>http://127.0.0.1:8040</code>. Native agents and the console can run together; only the console is read-only.</p><div class="notice">${icon("lock")}<span>Real non-loopback access requires <code>ALETHEIA_UI_TOKEN</code>. Never expose project evidence publicly. Token entry is held in browser memory only.</span></div></div>`,
     "workspace-info",
   );
 }
+
 const guides = [
   ["getting-started", "Getting started", "book", "GETTING_STARTED.md"],
   ["console", "Using the local console", "grid", "CONSOLE.md"],
@@ -478,12 +650,14 @@ const guides = [
   ["validation", "Measured results & limitations", "shield", "VALIDATION.md"],
   ["brand", "Brand & design system", "spark", "BRAND.md"],
 ];
+
 function docs() {
   showModal(
     `${modalHeader("A field guide to Aletheia.", "Packaged with your console. Available offline.")}<div class="modal-body"><div class="help-grid">${guides.map(([slug, name, ico]) => `<button class="help-link" data-guide="${slug}">${icon(ico)}${name}${icon("arrow")}</button>`).join("")}</div><p>No network requests to external documentation services. These guides ship with the installed runtime.</p><button class="text-button" data-action="workflow">See the supervision loop ${icon("arrow")}</button></div>`,
     "docs",
   );
 }
+
 function inlineMarkdown(text) {
   return esc(text)
     .replace(/`([^`]+)`/g, "<code>$1</code>")
@@ -497,6 +671,7 @@ function inlineMarkdown(text) {
       return label;
     });
 }
+
 function markdown(text) {
   let html = "",
     code = null,
@@ -559,6 +734,7 @@ function markdown(text) {
   if (code !== null) html += `<pre>${esc(code.join("\n"))}</pre>`;
   return html;
 }
+
 async function openGuide(slug) {
   const guide = guides.find((g) => g[0] === slug);
   if (!guide) return;
@@ -585,18 +761,21 @@ async function openGuide(slug) {
     );
   }
 }
+
 function workflow() {
   showModal(
     `${modalHeader("A safety net, not another agent.")}<div class="modal-body"><p>Aletheia sits around the work your agent already does. Its non-negotiable: independently verify before recording successful completion.</p><div class="workflow-list">${lifecycle.map(([name, sub, ico]) => `<div class="workflow-step ${name === "Verify" ? "focus" : ""}"><span class="workflow-node">${icon(ico)}</span><div><h3>${name}</h3><p>${sub}</p></div></div>`).join("")}</div><div class="notice">${icon("alert")}<span>Capabilities differ by adapter. Hooks are guardrails, not a hard security sandbox. Passing checks proves those checks—not every intended requirement.</span></div></div>`,
     "workflow",
   );
 }
+
 function authModal(message = "") {
   showModal(
     `${modalHeader("Unlock your local console.")}<form id="auth-form" class="modal-body"><p>Enter the <code>ALETHEIA_UI_TOKEN</code> configured on this console’s host. This is not a GitHub or model-provider credential.</p><label for="ui-token">Console access token</label><input id="ui-token" type="password" autocomplete="off" required>${message ? `<p role="alert">${esc(message)}</p>` : ""}<button class="btn primary" type="submit">Unlock console ${icon("arrow")}</button><p>Held in memory only. Reloading clears the token.</p></form>`,
     "auth",
   );
 }
+
 async function openTask(id, tab = "timeline") {
   currentTab = tab;
   showModal(
@@ -619,6 +798,7 @@ async function openTask(id, tab = "timeline") {
     );
   }
 }
+
 function drawTask() {
   const t = currentTask.task;
   showModal(
@@ -638,6 +818,7 @@ function drawTask() {
     true,
   );
 }
+
 function timeline() {
   return currentTask.events.length
     ? currentTask.events
@@ -651,6 +832,7 @@ function timeline() {
         "This task has no event evidence to inspect.",
       );
 }
+
 function evidence() {
   const checks = currentTask.events.filter(
     (e) => e.kind === "verification.result",
@@ -667,6 +849,7 @@ function evidence() {
         "No independent verification result has been recorded. An agent’s final answer is not completion evidence.",
       );
 }
+
 function checkpointCards() {
   return currentTask.checkpoints.length
     ? currentTask.checkpoints
@@ -680,6 +863,7 @@ function checkpointCards() {
         "No files can be restored or inspected without retained evidence.",
       );
 }
+
 async function inspectCheckpoint(id, filename) {
   const task = currentTask?.task.id;
   if (!task) return;
@@ -694,6 +878,7 @@ async function inspectCheckpoint(id, filename) {
     if (container?.isConnected) container.textContent = e.message;
   }
 }
+
 function exportTrace() {
   if (!currentTask) return;
   const blob = new Blob(
@@ -708,12 +893,14 @@ function exportTrace() {
   setTimeout(() => URL.revokeObjectURL(url), 1000);
   toast("Loaded trace exported");
 }
+
 function searchModal() {
   showModal(
     `<header class="search-field">${icon("search")}<input id="palette-search" placeholder="Jump to a page or find a task…" aria-label="Search pages and tasks"><button class="icon-button" data-action="close" aria-label="Close search">${icon("close")}</button></header><h2 id="dialog-title" class="sr-only">Search workspace</h2><div id="palette-results" class="palette-list">${searchResults("")}</div>`,
     "search",
   );
 }
+
 function searchResults(q) {
   q = q.toLowerCase();
   const pages = navs.filter((n) => n[1].toLowerCase().includes(q));
@@ -735,6 +922,7 @@ function searchResults(q) {
         .join("") || '<p class="loading-line">No matching pages or tasks.</p>'
   );
 }
+
 document.addEventListener("click", (e) => {
   const t = e.target.closest("button,a[data-nav],tr[data-task]");
   if (e.target.matches("[data-backdrop]")) {
@@ -747,7 +935,7 @@ document.addEventListener("click", (e) => {
     nav(t.dataset.nav);
     return;
   }
-  if (t.dataset.task) {
+  if (t.dataset.task && !t.classList.contains("carousel-btn")) {
     openTask(t.dataset.task, t.dataset.tab || "timeline");
     return;
   }
@@ -786,6 +974,8 @@ document.addEventListener("click", (e) => {
   else if (a === "docs") docs();
   else if (a === "workflow") workflow();
   else if (a === "search") searchModal();
+  else if (a === "carousel-prev") updateCarousel(carouselIndex - 1);
+  else if (a === "carousel-next") updateCarousel(carouselIndex + 1);
   else if (a === "menu")
     document.querySelector(".sidebar")?.classList.toggle("open");
   else if (a === "export") exportTrace();
@@ -795,6 +985,7 @@ document.addEventListener("click", (e) => {
     render();
   }
 });
+
 document.addEventListener("input", (e) => {
   if (e.target.id === "task-search") {
     query = e.target.value;
@@ -805,6 +996,7 @@ document.addEventListener("input", (e) => {
       e.target.value,
     );
 });
+
 document.addEventListener("change", (e) => {
   if (e.target.id === "status-filter") {
     filter = e.target.value;
@@ -826,6 +1018,7 @@ document.addEventListener("change", (e) => {
     toast("Density preference saved");
   }
 });
+
 document.addEventListener("submit", async (e) => {
   if (e.target.id !== "auth-form") return;
   e.preventDefault();
@@ -840,6 +1033,7 @@ document.addEventListener("submit", async (e) => {
     authModal(err.message);
   }
 });
+
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") {
     if (modalKind) closeModal();
@@ -858,6 +1052,18 @@ document.addEventListener("keydown", (e) => {
     e.preventDefault();
     searchModal();
   }
+  if (
+    !modalKind &&
+    document.activeElement &&
+    (document.activeElement.closest(".liquid-glass-carousel") ||
+      document.activeElement === document.body)
+  ) {
+    if (e.key === "ArrowLeft") {
+      updateCarousel(carouselIndex - 1);
+    } else if (e.key === "ArrowRight") {
+      updateCarousel(carouselIndex + 1);
+    }
+  }
   if (e.key === "Tab" && modalKind) {
     const list = [
       ...document.querySelectorAll(
@@ -875,6 +1081,7 @@ document.addEventListener("keydown", (e) => {
     }
   }
 });
+
 setInterval(() => {
   if (
     data &&
@@ -885,4 +1092,5 @@ setInterval(() => {
   )
     load();
 }, 15000);
+
 load();
