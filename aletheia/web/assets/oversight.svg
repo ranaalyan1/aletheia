@@ -1,1 +1,75 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="490" height="250" viewBox="0 0 490 250" fill="none"><title>A watchful guardian between agent actions and verified results</title><defs><pattern id="grid" width="22" height="22" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="#DDD7F0"/></pattern><linearGradient id="tile" x1="200" y1="65" x2="290" y2="170" gradientUnits="userSpaceOnUse"><stop stop-color="#A794FC"/><stop offset="1" stop-color="#7C62EC"/></linearGradient></defs><rect width="490" height="250" fill="url(#grid)"/><circle cx="246" cy="125" r="103" fill="#F5F2FE" stroke="#E8E1FA"/><circle cx="246" cy="125" r="78" stroke="#D6CAFB" stroke-dasharray="3 6"/><path d="M74 80h95m154 90h96M325 76h74M87 180h75" stroke="#CDC2EE" stroke-width="1.5" stroke-dasharray="4 4"/><rect x="193" y="76" width="106" height="106" rx="32" fill="#DAD1F4"/><rect x="193" y="68" width="106" height="106" rx="32" fill="url(#tile)"/><path d="M228 96c-11 3-16 12-16 24s5 21 16 25m36-49c11 3 16 12 16 24s-5 21-16 25" stroke="white" stroke-width="5" stroke-linecap="round"/><rect x="231" y="108" width="7" height="13" rx="3.5" fill="white"/><rect x="254" y="108" width="7" height="13" rx="3.5" fill="white"/><path d="m236 136 8 5 12-10" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><g font-family="Arial, sans-serif" font-size="12"><rect x="33" y="49" width="137" height="50" rx="12" fill="white" stroke="#E7E2F2"/><rect x="46" y="61" width="26" height="26" rx="8" fill="#F0ECFC"/><path d="m56 69-4 5 4 5m6-10 4 5-4 5" stroke="#8B74D9" stroke-width="1.5" stroke-linecap="round"/><text x="82" y="79" fill="#625B70">Agent action</text><rect x="313" y="145" width="151" height="51" rx="12" fill="white" stroke="#E7E2F2"/><circle cx="338" cy="170" r="12" fill="#E6F4EC"/><path d="m333 170 3 3 6-6" stroke="#3F9471" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><text x="359" y="175" fill="#467960">Verified result</text><rect x="325" y="48" width="94" height="30" rx="15" fill="white" stroke="#E7E2F2"/><circle cx="341" cy="63" r="3" fill="#8B74D9"/><text x="352" y="67" fill="#8B74D9" font-size="10">tests passed</text><rect x="80" y="170" width="77" height="30" rx="15" fill="white" stroke="#E7E2F2"/><path d="m93 184 3 3 5-6" stroke="#8B74D9" stroke-width="1.5" stroke-linecap="round"/><text x="109" y="189" fill="#8B74D9" font-size="10">safe</text></g><path d="m395 115 2-6 2 6 6 2-6 2-2 6-2-6-6-2Z" fill="#BFAEF3"/><circle cx="144" cy="135" r="4" fill="#D3C6F8"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="490" height="250" viewBox="0 0 490 250" fill="none">
+  <title>A watchful liquid glass lens between agent actions and verified results</title>
+  <defs>
+    <linearGradient id="ov-rim" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#79B8FF"/>
+      <stop offset="35%" stop-color="#B392F0"/>
+      <stop offset="70%" stop-color="#F97583"/>
+      <stop offset="100%" stop-color="#FFAB70"/>
+    </linearGradient>
+    <radialGradient id="ov-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#B392F0" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#0A0A0A" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="ov-grid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#FFFFFF" fill-opacity="0.08"/>
+    </pattern>
+    <linearGradient id="ov-glass" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.02"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Dark Obsidian Container -->
+  <rect width="490" height="250" rx="16" fill="#0A0A0A"/>
+  <rect width="490" height="250" rx="16" fill="url(#ov-grid)"/>
+  <circle cx="245" cy="125" r="110" fill="url(#ov-glow)"/>
+
+  <!-- Left Card: Agent Action -->
+  <g transform="translate(24, 60)">
+    <rect width="140" height="130" rx="12" fill="#12121A" stroke="#FFFFFF" stroke-opacity="0.08"/>
+    <rect width="140" height="28" rx="12" fill="#FFFFFF" fill-opacity="0.04"/>
+    <circle cx="16" cy="14" r="3" fill="#F97583"/>
+    <circle cx="26" cy="14" r="3" fill="#FFAB70"/>
+    <circle cx="36" cy="14" r="3" fill="#79B8FF"/>
+    <text x="50" y="18" font-family="JetBrains Mono, monospace" font-size="10" fill="#9DB1C5">agent.py</text>
+    
+    <text x="14" y="54" font-family="JetBrains Mono, monospace" font-size="11" fill="#79B8FF">// proposed diff</text>
+    <text x="14" y="74" font-family="JetBrains Mono, monospace" font-size="11" fill="#F97583">- expired = True</text>
+    <text x="14" y="94" font-family="JetBrains Mono, monospace" font-size="11" fill="#B392F0">+ reject(token)</text>
+    <text x="14" y="114" font-family="JetBrains Mono, monospace" font-size="10" fill="#9DB1C5">unverified claim</text>
+  </g>
+
+  <!-- Connecting dashed stream -->
+  <path d="M 164 125 L 205 125" stroke="#B392F0" stroke-width="2" stroke-dasharray="3 3"/>
+  <path d="M 285 125 L 326 125" stroke="#79B8FF" stroke-width="2" stroke-dasharray="3 3"/>
+
+  <!-- Center: Liquid Glass Inspection Lens -->
+  <g transform="translate(205, 85)">
+    <!-- Liquid Glass Tile -->
+    <rect width="80" height="80" rx="16" fill="#141420"/>
+    <rect width="80" height="80" rx="16" fill="url(#ov-glass)"/>
+    <rect x="0.75" y="0.75" width="78.5" height="78.5" rx="15.25" stroke="url(#ov-rim)" stroke-width="1.5"/>
+
+    <!-- Lens Specular Curve -->
+    <path d="M 6 12 C 20 20, 60 20, 74 12" stroke="#FFFFFF" stroke-opacity="0.3" stroke-width="1.5" stroke-linecap="round"/>
+
+    <!-- Aletheia Monogram in Lens -->
+    <path d="M26 60 L40 22 L54 60" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M30 48 L50 48" stroke="#9DB1C5" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+    <path d="M31 46 L39 54 L57 32" stroke="#79B8FF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- Right Card: Verified Evidence -->
+  <g transform="translate(326, 60)">
+    <rect width="140" height="130" rx="12" fill="#12121A" stroke="url(#ov-rim)" stroke-opacity="0.4"/>
+    <rect width="140" height="28" rx="12" fill="#B392F0" fill-opacity="0.08"/>
+    <circle cx="16" cy="14" r="3.5" fill="#79B8FF"/>
+    <text x="28" y="18" font-family="JetBrains Mono, monospace" font-size="10" font-weight="500" fill="#B392F0">VERIFIED ✓</text>
+
+    <text x="14" y="54" font-family="JetBrains Mono, monospace" font-size="11" fill="#FFFFFF">pytest: passed</text>
+    <text x="14" y="74" font-family="JetBrains Mono, monospace" font-size="11" fill="#9DB1C5">mypy: 0 errors</text>
+    <text x="14" y="94" font-family="JetBrains Mono, monospace" font-size="11" fill="#9DB1C5">diff: verified</text>
+    <text x="14" y="114" font-family="JetBrains Mono, monospace" font-size="10" fill="#79B8FF">proven success</text>
+  </g>
+</svg>

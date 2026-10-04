@@ -1,6 +1,6 @@
 <p align="center">
   <a href="docs/BRAND.md">
-    <img src="docs/brand/logo.png" alt="Aletheia logo — an open A with a mint verification check on a violet tile" width="144" height="144">
+    <img src="docs/brand/logo.png" alt="Aletheia logo — Liquid Glass evidence monogram with chromatic rim dispersion" width="144" height="144">
   </a>
 </p>
 
@@ -275,10 +275,10 @@ tests/              Contract, regression, security, and browser checks
 ## The mark: an A that asks for evidence
 
 <p align="center">
-  <img src="docs/brand/logo.svg" alt="Aletheia logo: a white open A intersected by a mint verification check on a violet rounded square." width="96" height="96">
+  <img src="docs/brand/logo.svg" alt="Aletheia logo: a white architectural A intersected by a rising chromatic verification check on a dark liquid glass tile." width="96" height="96">
 </p>
 
-**Aletheia** takes its name from the Greek word for truth. The **evidence monogram** combines an open, architectural **A** with a rising verification check: a small visual reminder that a claim needs support. Violet connects it to the console; mint distinguishes the check from the letterform.
+**Aletheia** takes its name from the Greek word for truth. The **liquid glass evidence monogram** combines an open, architectural **A** with a rising verification check through a precision liquid-glass lens with chromatic rim dispersion: a visual reminder that a claim needs support.
 
 [SVG logo](docs/brand/logo.svg) · [PNG logo](docs/brand/logo.png) · [Monochrome](docs/brand/logo-monochrome.svg) · [Social card](docs/brand/social-card.png) · [Brand guide](docs/BRAND.md)
 
